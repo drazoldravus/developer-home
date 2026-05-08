@@ -242,7 +242,7 @@
       <div class="section-label" style="text-align: center; margin-bottom: 40px;">GLOBAL LEADERBOARDS</div>
       <div class="leaderboard-wrapper">
         <div class="lb-header">
-          <div class="lb-title">Top Practitioners</div>
+          <div class="lb-title">Top 5 Practitioners</div>
           <div id="lb-badge" class="lb-live-badge"><div class="lb-live-dot"></div> LIVE SYNC</div>
         </div>
         <div class="lb-tabs">
@@ -378,11 +378,13 @@
       qContent.innerHTML = `<div class="prescription-card"><div class="rx-badge">YOUR PRESCRIPTION</div><div class="rx-app">${appName}</div><div class="rx-title">${exerciseTitle}</div><div class="rx-detail">${detail}</div><div class="rx-desc">${desc}</div><div class="rx-actions">${actionBtn}</div><div style="margin-top: 24px; cursor: pointer; color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 2px;" onclick="openQuiz()">↺ RETAKE ASSESSMENT</div></div>`;
     }
 
-    /* ── SUPABASE LEADERBOARD (WITH SOCIAL PROOF FOOTER) ── */
+    /* ── SUPABASE LEADERBOARD ── */
     async function loadLiveLeaderboard(app) {
-      const c = document.getElementById('lb-rows-container');
+      const c = document.getElementById('lb-rows-container'); 
       const b = document.getElementById('lb-badge');
       
+      if (!c || !b) return;
+
       if(app !== 'auric') { 
         b.classList.add('offline'); b.innerHTML='IN DEVELOPMENT'; 
         c.innerHTML='<div class="lb-loading">Leaderboards will open upon app release.</div>'; 
@@ -393,47 +395,34 @@
       b.innerHTML='<div class="lb-live-dot"></div> LIVE SYNC';
       
       try {
-        if (!window.supabase) throw new Error("Supabase blocked by browser.");
+        if (!window.supabase) throw new Error("Supabase Library failed to load. Check your internet connection or ad-blocker.");
         
         const supabaseClient = window.supabase.createClient('https://unzjjmesuyrlgauyjvai.supabase.co', 'sb_publishable_Q695Fwg_vWyjxVs5H4i9Qg_dV8bbZiO');
         
-        // 1. Get the Top 5 Users
+        // Fetch ONLY the top 5 users. No extra count queries.
         const { data, error } = await supabaseClient
             .from('profiles')
             .select('username, total_minutes')
             .order('total_minutes', { ascending: false })
             .limit(5);
             
-        // 2. Get the TOTAL count of all users (Super fast query!)
-        const { count, error: countError } = await supabaseClient
-            .from('profiles')
-            .select('*', { count: 'exact', head: true });
+        if (error) throw error;
         
-        if(error || !data) throw error;
-        if(data.length === 0) { c.innerHTML='<div class="lb-loading">No sessions logged yet.</div>'; return; }
-        
-        // Build the HTML for the top 5 rows
-        let htmlOutput = data.map((u,i) => `<div class="lb-row"><div class="lb-rank">0${i+1}</div><div class="lb-user">${u.username||'Breather'}</div><div class="lb-score">${u.total_minutes} min</div></div>`).join('');
-        
-        // Build the footer if there are more than 5 users
-        if (!countError && count > 5) {
-            const remainingUsers = count - 5;
-            htmlOutput += `<div class="lb-footer">...AND ${remainingUsers.toLocaleString()} OTHER PRACTITIONERS</div>`;
+        if (!data || data.length === 0) { 
+            c.innerHTML='<div class="lb-loading">No sessions logged yet.</div>'; 
+            return; 
         }
         
-        c.innerHTML = htmlOutput;
+        // Simply map the 5 users and drop them into the container
+        c.innerHTML = data.map((u,i) => `<div class="lb-row"><div class="lb-rank">0${i+1}</div><div class="lb-user">${u.username||'Breather'}</div><div class="lb-score">${u.total_minutes} min</div></div>`).join('');
         
-     } catch(e) { 
-        console.error("Leaderboard Crash:", e); // Prints to browser console
-        
-        // This will print the EXACT error right onto your webpage
+      } catch(e) { 
+        console.error("Leaderboard Crash:", e);
         c.innerHTML = `<div class="lb-loading" style="color: #FF5252; font-size: 12px; line-height: 1.5;">
-          <b>ERROR:</b> ${e.message || JSON.stringify(e)}<br>
-          <i>Check Developer Console (F12) for more details.</i>
+          <b>CONNECTION FAILED:</b><br>${e.message || JSON.stringify(e)}
         </div>`; 
       }
     }
-    
   </script>
 </body>
 </html>
