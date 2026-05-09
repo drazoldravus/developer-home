@@ -249,11 +249,14 @@ async function loadLiveLeaderboard(app) {
   b.innerHTML = '<div class="lb-live-dot"></div> LIVE SYNC';
 
   try {
+    if (typeof APP_CONFIG === 'undefined' || !APP_CONFIG.SUPABASE_URL || !APP_CONFIG.SUPABASE_ANON_KEY) {
+      throw new Error("Missing config.js — copy config.example.js to config.js and add your credentials.");
+    }
     if (!window.supabase) throw new Error("Supabase Library failed to load. Check your internet connection or ad-blocker.");
 
     const supabaseClient = window.supabase.createClient(
-      'https://unzjjmesuyrlgauyjvai.supabase.co',
-      'sb_publishable_Q695Fwg_vWyjxVs5H4i9Qg_dV8bbZiO'
+      APP_CONFIG.SUPABASE_URL,
+      APP_CONFIG.SUPABASE_ANON_KEY
     );
 
     const { data, error } = await supabaseClient
