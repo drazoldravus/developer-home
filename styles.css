@@ -170,6 +170,7 @@ img { display:block; max-width:100%; }
   background:var(--primary-dim); border:1px solid rgba(168,85,247,.4);
   color:var(--primary); font-size:12px; letter-spacing:3px; font-weight:500;
   transition:all .4s cubic-bezier(.16,1,.3,1); animation:fadeInUp 1s .8s both;
+  margin-bottom:80px;
 }
 .cta-btn svg { transition:transform .3s ease; }
 .cta-btn:hover {
@@ -456,8 +457,8 @@ img { display:block; max-width:100%; }
    SCROLL INDICATOR
    ══════════════ */
 .scroll-indicator {
-  position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
-  display:flex; flex-direction:column; align-items:center; gap:12px;
+  position:absolute; bottom:24px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:10px;
   animation:fadeIn 1.5s 1.2s both;
   transition:opacity .4s ease;
 }
@@ -508,20 +509,25 @@ img { display:block; max-width:100%; }
 }
 
 /* ══════════════
-   ANIMATED GRADIENT BORDER
+   GLOWING CARD BORDER
    ══════════════ */
-@property --border-angle {
-  syntax:'<angle>'; initial-value:0deg; inherits:false;
+.app-card {
+  position:relative;
+  transition:all .5s cubic-bezier(.16,1,.3,1), box-shadow .5s ease;
 }
-@keyframes rotateBorder { to{--border-angle:360deg} }
-.app-card { position:relative; overflow:hidden; }
-.app-card::before {
-  content:''; position:absolute; inset:-2px; border-radius:inherit; z-index:-1;
-  background:conic-gradient(from var(--border-angle),transparent 60%,var(--primary) 80%,var(--accent) 90%,transparent);
-  animation:rotateBorder 4s linear infinite; opacity:0;
-  transition:opacity .5s ease;
+.app-card:hover {
+  border-color:rgba(168,85,247,.35);
+  box-shadow:
+    0 0 20px rgba(168,85,247,.12),
+    0 0 60px rgba(168,85,247,.06),
+    0 24px 60px rgba(0,0,0,.4),
+    inset 0 0 40px rgba(168,85,247,.03);
 }
-.app-card:hover::before { opacity:.6; }
+@keyframes glowPulse {
+  0%,100% { box-shadow:0 0 20px rgba(168,85,247,.1),0 0 60px rgba(168,85,247,.05),0 24px 60px rgba(0,0,0,.4); }
+  50% { box-shadow:0 0 30px rgba(168,85,247,.18),0 0 80px rgba(168,85,247,.08),0 24px 60px rgba(0,0,0,.4); }
+}
+.app-card:hover { animation:glowPulse 3s ease-in-out infinite; }
 
 /* ══════════════
    RESPONSIVE
