@@ -417,6 +417,113 @@ img { display:block; max-width:100%; }
 }
 
 /* ══════════════
+   CUSTOM CURSOR
+   ══════════════ */
+.cursor-dot {
+  position:fixed; width:8px; height:8px; border-radius:50%;
+  background:var(--primary); z-index:99999; pointer-events:none;
+  transform:translate(-50%,-50%); mix-blend-mode:screen;
+  transition:width .2s, height .2s, background .2s;
+}
+.cursor-dot.hover { width:14px; height:14px; background:var(--accent); }
+.cursor-glow {
+  position:fixed; width:40px; height:40px; border-radius:50%;
+  background:radial-gradient(circle,rgba(168,85,247,.18),transparent 70%);
+  z-index:99998; pointer-events:none; transform:translate(-50%,-50%);
+  transition:width .3s, height .3s, opacity .3s;
+}
+.cursor-glow.hover { width:64px; height:64px; }
+
+/* ══════════════
+   NOISE OVERLAY
+   ══════════════ */
+.noise-overlay {
+  position:fixed; inset:0; z-index:9998; pointer-events:none;
+  opacity:.035; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat:repeat; background-size:256px 256px;
+}
+
+/* ══════════════
+   CUSTOM SCROLLBAR
+   ══════════════ */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:rgba(168,85,247,.3); border-radius:4px; }
+::-webkit-scrollbar-thumb:hover { background:rgba(168,85,247,.5); }
+
+/* ══════════════
+   SCROLL INDICATOR
+   ══════════════ */
+.scroll-indicator {
+  position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:12px;
+  animation:fadeIn 1.5s 1.2s both;
+  transition:opacity .4s ease;
+}
+.scroll-indicator.hidden { opacity:0; pointer-events:none; }
+.scroll-indicator span {
+  font-size:10px; letter-spacing:4px; color:var(--text-muted); text-transform:uppercase;
+}
+.scroll-mouse {
+  width:22px; height:36px; border:2px solid rgba(255,255,255,.15);
+  border-radius:12px; position:relative; display:flex; justify-content:center;
+}
+.scroll-wheel {
+  width:3px; height:8px; background:var(--primary); border-radius:3px;
+  margin-top:6px; animation:scrollWheel 2s ease-in-out infinite;
+}
+@keyframes scrollWheel {
+  0%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(12px)}
+}
+
+/* ══════════════
+   MARQUEE TICKER
+   ══════════════ */
+.marquee-section {
+  overflow:hidden; padding:20px 0;
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  background:rgba(168,85,247,.02);
+}
+.marquee-track {
+  display:flex; align-items:center; gap:28px; white-space:nowrap;
+  animation:marqueeScroll 25s linear infinite;
+  width:max-content;
+}
+.marquee-track span {
+  font-size:13px; letter-spacing:4px; color:var(--text-muted);
+  font-weight:400; text-transform:uppercase;
+}
+.mq-dot { color:var(--primary); font-size:8px; opacity:.5; }
+@keyframes marqueeScroll {
+  0%{transform:translateX(0)} 100%{transform:translateX(-50%)}
+}
+
+/* ══════════════
+   3D TILT CARD
+   ══════════════ */
+[data-tilt] {
+  transform-style:preserve-3d; perspective:1000px;
+  transition:transform .4s cubic-bezier(.16,1,.3,1), background .5s ease, border-color .5s ease, box-shadow .5s ease;
+}
+
+/* ══════════════
+   ANIMATED GRADIENT BORDER
+   ══════════════ */
+@property --border-angle {
+  syntax:'<angle>'; initial-value:0deg; inherits:false;
+}
+@keyframes rotateBorder { to{--border-angle:360deg} }
+.app-card { position:relative; overflow:hidden; }
+.app-card::before {
+  content:''; position:absolute; inset:-2px; border-radius:inherit; z-index:-1;
+  background:conic-gradient(from var(--border-angle),transparent 60%,var(--primary) 80%,var(--accent) 90%,transparent);
+  animation:rotateBorder 4s linear infinite; opacity:0;
+  transition:opacity .5s ease;
+}
+.app-card:hover::before { opacity:.6; }
+
+/* ══════════════
    RESPONSIVE
    ══════════════ */
 @media(max-width:1024px) {
@@ -425,6 +532,7 @@ img { display:block; max-width:100%; }
   .review-bubble { flex:1; min-width:240px; margin-left:0!important; }
 }
 @media(max-width:768px) {
+  .cursor-dot,.cursor-glow { display:none!important; }
   .nav { padding:16px 24px; }
   .nav-links { display:none; }
   .hamburger { display:flex; }
@@ -446,6 +554,9 @@ img { display:block; max-width:100%; }
   .breath-ring:nth-child(2) { inset:8px; }
   .breath-ring:nth-child(3) { inset:16px; }
   .breath-core { inset:26px; }
+  .scroll-indicator { bottom:16px; }
+  .marquee-track { gap:20px; }
+  .marquee-track span { font-size:11px; letter-spacing:3px; }
 }
 @media(max-width:480px) {
   .hero { padding:80px 16px 40px; }

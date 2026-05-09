@@ -313,38 +313,90 @@ if (scrollProgressBar) {
   }, { passive: true });
 }
 
-/* ── MAGNETIC BUTTONS ── */
+/* ── SCROLL INDICATOR FADE ── */
+const scrollIndicator = document.getElementById('scroll-indicator');
+if (scrollIndicator) {
+  window.addEventListener('scroll', () => {
+    scrollIndicator.classList.toggle('hidden', window.scrollY > 100);
+  }, { passive: true });
+}
+
+/* ── INTERACTIVE EFFECTS (desktop only) ── */
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
 if (!isTouchDevice) {
+
+  /* ── CUSTOM CURSOR ── */
+  const cursorDot = document.getElementById('cursor-dot');
+  const cursorGlow = document.getElementById('cursor-glow');
+  let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+  let gx = cx, gy = cy;
+
+  document.addEventListener('mousemove', e => {
+    cx = e.clientX; cy = e.clientY;
+    cursorDot.style.left = cx + 'px';
+    cursorDot.style.top = cy + 'px';
+  });
+
+  function animateGlow() {
+    gx += (cx - gx) * 0.12;
+    gy += (cy - gy) * 0.12;
+    cursorGlow.style.left = gx + 'px';
+    cursorGlow.style.top = gy + 'px';
+    requestAnimationFrame(animateGlow);
+  }
+  animateGlow();
+
+  // Hover state for interactive elements
+  const hoverTargets = 'a, button, [data-magnetic], .lb-tab, .quiz-btn, .hamburger';
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest(hoverTargets)) {
+      cursorDot.classList.add('hover');
+      cursorGlow.classList.add('hover');
+    }
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest(hoverTargets)) {
+      cursorDot.classList.remove('hover');
+      cursorGlow.classList.remove('hover');
+    }
+  });
+
+  /* ── MAGNETIC BUTTONS ── */
   const magneticEls = document.querySelectorAll('[data-magnetic]');
-  const MAGNETIC_RADIUS = 120;  // px — proximity trigger distance
-  const PULL_STRENGTH = 0.35;   // how far the button moves (0–1)
+  const MAG_RADIUS = 120, PULL = 0.35;
 
   document.addEventListener('mousemove', e => {
     magneticEls.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-
-      const distX = e.clientX - centerX;
-      const distY = e.clientY - centerY;
-      const distance = Math.sqrt(distX * distX + distY * distY);
-
-      if (distance < MAGNETIC_RADIUS) {
-        // Ease the pull — stronger as cursor gets closer
-        const pull = (1 - distance / MAGNETIC_RADIUS) * PULL_STRENGTH;
-        const tx = distX * pull;
-        const ty = distY * pull;
-        el.style.transform = `translate(${tx}px, ${ty}px)`;
+      const r = el.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width / 2);
+      const dy = e.clientY - (r.top + r.height / 2);
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < MAG_RADIUS) {
+        const p = (1 - dist / MAG_RADIUS) * PULL;
+        el.style.transform = `translate(${dx * p}px, ${dy * p}px)`;
       } else {
         el.style.transform = '';
       }
     });
   });
 
-  // Reset on mouse leaving the viewport
   document.addEventListener('mouseleave', () => {
     magneticEls.forEach(el => { el.style.transform = ''; });
   });
+
+  /* ── 3D TILT ON APP CARD ── */
+  const tiltEls = document.querySelectorAll('[data-tilt]');
+  tiltEls.forEach(el => {
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transform = `perspective(1000px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale3d(1.01,1.01,1.01)`;
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = '';
+    });
+  });
 }
+
