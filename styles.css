@@ -397,6 +397,26 @@ img { display:block; max-width:100%; }
 .copyright { color:rgba(255,255,255,.15); font-size:11px; letter-spacing:2px; }
 
 /* ══════════════
+   SCROLL PROGRESS BAR
+   ══════════════ */
+#scroll-progress {
+  position:fixed; top:0; left:0; height:2px; width:0%;
+  background:linear-gradient(90deg, var(--blue), var(--primary), var(--accent));
+  box-shadow:0 0 8px var(--primary-glow), 0 0 20px rgba(168,85,247,0.2);
+  z-index:9999; pointer-events:none;
+  transition:width 60ms linear;
+  border-radius:0 2px 2px 0;
+}
+
+/* ══════════════
+   MAGNETIC BUTTONS
+   ══════════════ */
+[data-magnetic] {
+  transition:transform 0.25s cubic-bezier(.23,1,.32,1), background .4s ease, border-color .4s ease, box-shadow .4s ease, color .4s ease;
+  will-change:transform;
+}
+
+/* ══════════════
    RESPONSIVE
    ══════════════ */
 @media(max-width:1024px) {

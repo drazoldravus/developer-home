@@ -21,6 +21,9 @@
 
 <body>
 
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
   <!-- Animated Background -->
   <canvas id="bg-canvas"></canvas>
 
@@ -73,7 +76,7 @@
         <div class="breath-core"></div>
       </div>
 
-      <button class="cta-btn" onclick="openQuiz()">
+      <button class="cta-btn" data-magnetic onclick="openQuiz()">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"></circle>
@@ -143,7 +146,7 @@
               </div>
             </div>
             <a href="https://github.com/drazolcodes/developer-home/releases/latest/download/app-release.apk"
-              class="download-btn">
+              class="download-btn" data-magnetic>
               DOWNLOAD AURIC
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
