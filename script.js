@@ -301,3 +301,50 @@ window.handleAnswer = handleAnswer;
 document.addEventListener("DOMContentLoaded", () => {
   loadLiveLeaderboard('auric');
 });
+
+/* ── SCROLL PROGRESS BAR ── */
+const scrollProgressBar = document.getElementById('scroll-progress');
+if (scrollProgressBar) {
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    scrollProgressBar.style.width = progress + '%';
+  }, { passive: true });
+}
+
+/* ── MAGNETIC BUTTONS ── */
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+if (!isTouchDevice) {
+  const magneticEls = document.querySelectorAll('[data-magnetic]');
+  const MAGNETIC_RADIUS = 120;  // px — proximity trigger distance
+  const PULL_STRENGTH = 0.35;   // how far the button moves (0–1)
+
+  document.addEventListener('mousemove', e => {
+    magneticEls.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const distX = e.clientX - centerX;
+      const distY = e.clientY - centerY;
+      const distance = Math.sqrt(distX * distX + distY * distY);
+
+      if (distance < MAGNETIC_RADIUS) {
+        // Ease the pull — stronger as cursor gets closer
+        const pull = (1 - distance / MAGNETIC_RADIUS) * PULL_STRENGTH;
+        const tx = distX * pull;
+        const ty = distY * pull;
+        el.style.transform = `translate(${tx}px, ${ty}px)`;
+      } else {
+        el.style.transform = '';
+      }
+    });
+  });
+
+  // Reset on mouse leaving the viewport
+  document.addEventListener('mouseleave', () => {
+    magneticEls.forEach(el => { el.style.transform = ''; });
+  });
+}
