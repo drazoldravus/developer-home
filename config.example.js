@@ -10,6 +10,6 @@
    ══════════════════════════════════════ */
 
 const APP_CONFIG = Object.freeze({
-  SUPABASE_URL: 'YOUR_SUPABASE_URL_HERE',
-  SUPABASE_ANON_KEY: 'YOUR_SUPABASE_ANON_KEY_HERE',
+  SUPABASE_URL: 'https://unzjjmesuyrlgauyjvai.supabase.co',
+  SUPABASE_ANON_KEY: 'sb_publishable_Q695Fwg_vWyjxVs5H4i9Qg_dV8bbZiO',
 });
