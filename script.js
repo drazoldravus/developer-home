@@ -124,114 +124,6 @@ if (rc) {
   `).join('');
 }
 
-/* ── 5-STEP QUIZ ── */
-const modal = document.getElementById('quiz-modal');
-const qContent = document.getElementById('quiz-content');
-const qProg = document.getElementById('quiz-progress');
-let currentStep = 0;
-let userAnswers = { coreProblem: '', tension: '', time: '', experience: '', goal: '' };
-
-function openQuiz() {
-  currentStep = 0;
-  userAnswers = { coreProblem: '', tension: '', time: '', experience: '', goal: '' };
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  renderQuizStep();
-}
-function closeQuiz() {
-  modal.classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-const quizData = [
-  { q: "What is your primary goal right now?", options: [
-    { text: "Calm anxiety & relieve stress", val: "anxiety" },
-    { text: "Improve deep focus & productivity", val: "focus" },
-    { text: "Fix my sleep schedule & rest", val: "sleep" }
-  ]},
-  { q: "How would you describe your current state?", options: [
-    { text: "Overwhelmed and racing thoughts", val: "racing" },
-    { text: "Foggy, distracted, and scattered", val: "foggy" },
-    { text: "Exhausted but physically wired", val: "wired" }
-  ]},
-  { q: "Where do you hold the most tension?", options: [
-    { text: "Tightness in the chest and shallow breath", val: "chest" },
-    { text: "Headaches, jaw clenching, or eye strain", val: "head" },
-    { text: "Restless body and fidgeting", val: "body" }
-  ]},
-  { q: "How much time do you have to reset?", options: [
-    { text: "I need a fast reset (Under 60 seconds)", val: "fast" },
-    { text: "I have a few minutes to spare", val: "mid" },
-    { text: "I am ready for a longer dedicated session", val: "long" }
-  ]},
-  { q: "What is your experience with breathwork?", options: [
-    { text: "I'm completely new to this", val: "new" },
-    { text: "I know the basics, but need guidance", val: "some" },
-    { text: "I practice regularly and want control", val: "pro" }
-  ]}
-];
-
-function renderQuizStep() {
-  if (currentStep >= quizData.length) { calculateResult(); return; }
-  const s = quizData[currentStep];
-  qProg.style.width = `${(currentStep / quizData.length) * 100}%`;
-  qContent.innerHTML = `
-    <div class="quiz-step-text">QUESTION 0${currentStep + 1} OF 05</div>
-    <div class="quiz-question">${s.q}</div>
-    <div class="quiz-options">
-      ${s.options.map(o => `<button class="quiz-btn" onclick="handleAnswer('${o.val}')">${o.text}<span class="arrow">→</span></button>`).join('')}
-    </div>`;
-}
-
-function handleAnswer(val) {
-  const keys = ['coreProblem', 'tension', 'time', 'experience', 'goal'];
-  userAnswers[keys[currentStep]] = val;
-  currentStep++;
-  renderQuizStep();
-}
-
-function calculateResult() {
-  qProg.style.width = '100%';
-  let appName, exerciseTitle, detail, desc, actionBtn;
-
-  if (userAnswers.coreProblem === 'focus') {
-    appName = "FOCUS FLOW APP"; exerciseTitle = "Deep Work Protocol"; detail = "App In Development";
-    desc = "Your answers indicate a need for sustained attention. Focus Flow is currently in closed testing to help developers and creatives achieve flow state.";
-    actionBtn = `<button class="rx-btn-primary" onclick="closeQuiz()">JOIN THE WAITLIST</button>`;
-  } else if (userAnswers.coreProblem === 'sleep') {
-    appName = "SLEEP SYNC APP"; exerciseTitle = "Circadian Reset"; detail = "App In Development";
-    desc = "You are struggling to transition from 'wired' to 'tired'. Sleep Sync will feature specialized long-form sessions to drop your core temperature and induce sleep.";
-    actionBtn = `<button class="rx-btn-primary" onclick="closeQuiz()">JOIN THE WAITLIST</button>`;
-  } else {
-    appName = "AURIC APP";
-    actionBtn = `<a href="#apps" class="rx-btn-primary" onclick="closeQuiz()">DOWNLOAD AURIC TO START</a>`;
-    if (userAnswers.tension === 'racing' && userAnswers.time === 'fast') {
-      exerciseTitle = "2-1-4 Reset"; detail = "Inhale 2s · Hold 1s · Exhale 4s";
-      desc = "You need an immediate circuit breaker. The 2-1-4 pattern delivers a fast calm-reset in under a minute, perfect for breaking tension between tasks.";
-    } else if (userAnswers.tension === 'racing') {
-      exerciseTitle = "5-5-5 Breathing"; detail = "Inhale 5s · Hold 5s · Exhale 5s";
-      desc = "You are dealing with acute mental overwhelm. This pattern rapidly lowers cortisol levels and interrupts anxious thought spirals.";
-    } else if (userAnswers.coreProblem === 'anxiety' && userAnswers.time === 'long') {
-      exerciseTitle = "4-7-8 Breathing"; detail = "Inhale 4s · Hold 7s · Exhale 8s";
-      desc = "Because you have the time for a dedicated session, the 4-7-8 method will deeply activate your parasympathetic nervous system and melt away physical tension.";
-    } else {
-      exerciseTitle = "Coherent Breathing"; detail = "Inhale 5s · Hold 0s · Exhale 5s";
-      desc = "Your body needs steady balance. Coherent breathing achieves heart-rate coherence, proven to reduce chronic chest tension and lower blood pressure.";
-    }
-  }
-
-  qContent.innerHTML = `
-    <div class="prescription-card">
-      <div class="rx-badge">YOUR PRESCRIPTION</div>
-      <div class="rx-app">${appName}</div>
-      <div class="rx-title">${exerciseTitle}</div>
-      <div class="rx-detail">${detail}</div>
-      <div class="rx-desc">${desc}</div>
-      <div class="rx-actions">${actionBtn}</div>
-      <div class="retake-link" onclick="openQuiz()">↺ RETAKE ASSESSMENT</div>
-    </div>`;
-}
-
 /* ── SUPABASE LEADERBOARD ── */
 async function loadLiveLeaderboard(app) {
   const c = document.getElementById('lb-rows-container');
@@ -300,6 +192,60 @@ window.handleAnswer = handleAnswer;
 
 document.addEventListener("DOMContentLoaded", () => {
   loadLiveLeaderboard('auric');
+
+  /* ── DYNAMIC GITHUB RELEASE DOWNLOAD LINKS ── */
+  async function fetchLatestAppRelease(appPrefix, buttonId, fallbackFilename) {
+    const btn = document.getElementById(buttonId);
+    if (!btn) return;
+
+    const fallbackUrl = `https://github.com/drazolcodes/developer-home/releases/download/${appPrefix}-latest/${fallbackFilename}`;
+
+    try {
+      const response = await fetch('https://api.github.com/repos/drazolcodes/developer-home/releases', {
+        headers: { 'Accept': 'application/vnd.github.v3+json' }
+      });
+
+      if (response.status === 403) {
+        console.warn(`GitHub API rate limit hit for ${appPrefix}. Using fallback URL.`);
+        btn.href = fallbackUrl;
+        return;
+      }
+
+      if (!response.ok) {
+        throw new Error(`GitHub API returned ${response.status}`);
+      }
+
+      const releases = await response.json();
+
+      const matchedRelease = releases.find(release =>
+        release.tag_name && release.tag_name.startsWith(`${appPrefix}-`)
+      );
+
+      if (!matchedRelease || !matchedRelease.assets) {
+        console.warn(`No release found with prefix "${appPrefix}-". Using fallback URL.`);
+        btn.href = fallbackUrl;
+        return;
+      }
+
+      const apkAsset = matchedRelease.assets.find(asset =>
+        asset.name && asset.name.endsWith('.apk')
+      );
+
+      if (apkAsset && apkAsset.browser_download_url) {
+        btn.href = apkAsset.browser_download_url;
+      } else {
+        console.warn(`No .apk asset found in release "${matchedRelease.tag_name}". Using fallback URL.`);
+        btn.href = fallbackUrl;
+      }
+
+    } catch (error) {
+      console.error(`Failed to fetch release for ${appPrefix}:`, error);
+      btn.href = fallbackUrl;
+    }
+  }
+
+  fetchLatestAppRelease('auric', 'auric-download-link', 'auric-release.apk');
+  fetchLatestAppRelease('lumio', 'lumio-download-link', 'lumio-release.apk');
 });
 
 /* ── SCROLL PROGRESS BAR ── */
@@ -325,42 +271,6 @@ if (scrollIndicator) {
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
 if (!isTouchDevice) {
-
-  /* ── CUSTOM CURSOR ── */
-  const cursorDot = document.getElementById('cursor-dot');
-  const cursorGlow = document.getElementById('cursor-glow');
-  let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-  let gx = cx, gy = cy;
-
-  document.addEventListener('mousemove', e => {
-    cx = e.clientX; cy = e.clientY;
-    cursorDot.style.left = cx + 'px';
-    cursorDot.style.top = cy + 'px';
-  });
-
-  function animateGlow() {
-    gx += (cx - gx) * 0.12;
-    gy += (cy - gy) * 0.12;
-    cursorGlow.style.left = gx + 'px';
-    cursorGlow.style.top = gy + 'px';
-    requestAnimationFrame(animateGlow);
-  }
-  animateGlow();
-
-  // Hover state for interactive elements
-  const hoverTargets = 'a, button, [data-magnetic], .lb-tab, .quiz-btn, .hamburger';
-  document.addEventListener('mouseover', e => {
-    if (e.target.closest(hoverTargets)) {
-      cursorDot.classList.add('hover');
-      cursorGlow.classList.add('hover');
-    }
-  });
-  document.addEventListener('mouseout', e => {
-    if (e.target.closest(hoverTargets)) {
-      cursorDot.classList.remove('hover');
-      cursorGlow.classList.remove('hover');
-    }
-  });
 
   /* ── MAGNETIC BUTTONS ── */
   const magneticEls = document.querySelectorAll('[data-magnetic]');

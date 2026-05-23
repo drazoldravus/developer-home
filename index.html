@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Drazolmakes — Mobile Developer</title>
-  <meta name="description" content="Independent mobile app developer building mindfulness, wellness, and productivity apps. Download AURIC — a minimalist breathwork companion." />
-  <meta name="keywords" content="Drazolmakes, AURIC, breathwork, mindfulness app, mobile developer, wellness" />
+  <meta name="description" content="Independent mobile app developer building mindfulness, wellness, and productivity apps. Download AURIC and LUMIO — crafted companions for focus, calm, and clarity." />
+  <meta name="keywords" content="Drazolmakes, AURIC, LUMIO, breathwork, mindfulness app, productivity, mobile developer, wellness" />
   <meta name="author" content="Drazolmakes" />
   <meta property="og:title" content="Drazolmakes — Mobile Developer" />
   <meta property="og:description" content="Building apps people actually use. Download AURIC for science-backed breathwork." />
@@ -22,30 +22,18 @@
   <div class="noise-overlay"></div>
   <canvas id="bg-canvas"></canvas>
 
-  <!-- Quiz Modal -->
-  <div id="quiz-modal" class="quiz-modal-overlay">
-    <div class="quiz-wrapper">
-      <button class="quiz-close-btn" onclick="closeQuiz()">✕</button>
-      <div class="quiz-progress-track">
-        <div id="quiz-progress" class="quiz-progress"></div>
-      </div>
-      <div id="quiz-content"></div>
-    </div>
-  </div>
 
   <!-- Mobile Menu -->
   <div id="mobile-overlay" class="mobile-overlay">
     <a href="#hero" onclick="toggleMenu()">Home</a>
     <a href="#apps" onclick="toggleMenu()">Apps</a>
     <a href="#leaderboard" onclick="toggleMenu()">Community</a>
-    <a href="javascript:void(0)" onclick="toggleMenu();openQuiz()">Assessment</a>
   </div>
 
   <div class="page">
     <nav class="nav" id="navbar">
       <div class="nav-logo">Drazolmakes</div>
       <div class="nav-links">
-        <a href="javascript:void(0)" class="nav-link" onclick="openQuiz()">Assessment</a>
         <a href="#apps" class="nav-link" data-section="apps">Apps</a>
         <a href="#leaderboard" class="nav-link" data-section="leaderboard">Community</a>
       </div>
@@ -62,11 +50,7 @@
         <div class="breath-ring"></div>
         <div class="breath-core"></div>
       </div>
-      <button class="cta-btn" data-magnetic onclick="openQuiz()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
-        TAKE THE ASSESSMENT
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-      </button>
+
       <div class="scroll-indicator" id="scroll-indicator">
         <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
         <span>SCROLL TO EXPLORE</span>
@@ -82,23 +66,44 @@
     </div>
 
     <section class="section reveal" id="apps">
-      <div class="section-label">LATEST RELEASE</div>
+      <div class="section-label">OUR APPS</div>
       <div class="app-showcase-wrapper">
-        <div class="app-card" id="auric-card" data-tilt>
-          <div class="app-icon"></div>
-          <div class="app-info">
-            <div class="app-name">AURIC <span class="app-status"><span class="status-dot"></span> LIVE</span></div>
-            <div class="app-desc">A minimalist approach to mindfulness. Reclaim your focus in a world of noise with clean, science-backed breathing cycles. Make it a lifestyle.</div>
-            <div class="feature-grid">
-              <div class="feature-item"><div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>15 Science-Backed Exercises</div>
-              <div class="feature-item"><div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Multi-User breathing session</div>
-              <div class="feature-item"><div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Global leaderboard</div>
-              <div class="feature-item"><div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Offline Mode Ready</div>
+        <div class="app-cards-grid">
+          <!-- AURIC Card -->
+          <div class="app-card" id="auric-card" data-tilt>
+            <div class="app-icon"></div>
+            <div class="app-info">
+              <div class="app-name">AURIC <span class="app-status"><span class="status-dot"></span> LIVE</span></div>
+              <div class="app-desc">A minimalist approach to mindfulness. Reclaim your focus in a world of noise with clean, science-backed breathing cycles. Make it a lifestyle.</div>
+              <div class="feature-grid">
+                <div class="feature-item"><div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>15 Science-Backed Exercises</div>
+                <div class="feature-item"><div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Multi-User breathing session</div>
+                <div class="feature-item"><div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Global leaderboard</div>
+                <div class="feature-item"><div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Offline Mode Ready</div>
+              </div>
+              <a id="auric-download-link" href="#" class="download-btn" data-magnetic>
+                DOWNLOAD AURIC
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              </a>
             </div>
-            <a href="https://github.com/drazolcodes/developer-home/releases/latest/download/app-release.apk" class="download-btn" data-magnetic>
-              DOWNLOAD AURIC
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            </a>
+          </div>
+          <!-- LUMIO Card -->
+          <div class="app-card" id="lumio-card" data-tilt>
+            <div class="app-icon app-icon--lumio"></div>
+            <div class="app-info">
+              <div class="app-name">LUMIO <span class="app-status"><span class="status-dot"></span> LIVE</span></div>
+              <div class="app-desc">Lumio is a clean, minimal flashlight app designed for people who want more than just a toggle. No ads, no bloat — just beautiful light at your fingertips.</div>
+              <div class="feature-grid">
+                <div class="feature-item"><div class="feature-icon feature-icon--lumio"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Torch with brightness control</div>
+                <div class="feature-item"><div class="feature-icon feature-icon--lumio"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Strobe with adjustable speed</div>
+                <div class="feature-item"><div class="feature-icon feature-icon--lumio"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>SOS emergency flash</div>
+                <div class="feature-item"><div class="feature-icon feature-icon--lumio"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Morse code encoder</div>
+              </div>
+              <a id="lumio-download-link" href="#" class="download-btn download-btn--lumio" data-magnetic>
+                DOWNLOAD LUMIO
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              </a>
+            </div>
           </div>
         </div>
         <div class="reviews-column" id="reviews-container"></div>
@@ -116,8 +121,6 @@
         </div>
         <div class="lb-tabs">
           <div class="lb-tab active" onclick="switchLeaderboardTab('auric', this)">AURIC</div>
-          <div class="lb-tab" onclick="switchLeaderboardTab('focus', this)">FOCUS FLOW</div>
-          <div class="lb-tab" onclick="switchLeaderboardTab('sleep', this)">SLEEP SYNC</div>
         </div>
         <div id="lb-rows-container"><div class="lb-loading">Connecting to servers...</div></div>
       </div>
