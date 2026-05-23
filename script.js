@@ -185,67 +185,18 @@ window.switchLeaderboardTab = (app, el) => {
   loadLiveLeaderboard(app);
 };
 
-// Make quiz functions global
-window.openQuiz = openQuiz;
-window.closeQuiz = closeQuiz;
-window.handleAnswer = handleAnswer;
-
 document.addEventListener("DOMContentLoaded", () => {
   loadLiveLeaderboard('auric');
 
-  /* ── DYNAMIC GITHUB RELEASE DOWNLOAD LINKS ── */
-  async function fetchLatestAppRelease(appPrefix, buttonId, fallbackFilename) {
-    const btn = document.getElementById(buttonId);
-    if (!btn) return;
-
-    const fallbackUrl = `https://github.com/drazolcodes/developer-home/releases/download/${appPrefix}-latest/${fallbackFilename}`;
-
-    try {
-      const response = await fetch('https://api.github.com/repos/drazolcodes/developer-home/releases', {
-        headers: { 'Accept': 'application/vnd.github.v3+json' }
-      });
-
-      if (response.status === 403) {
-        console.warn(`GitHub API rate limit hit for ${appPrefix}. Using fallback URL.`);
-        btn.href = fallbackUrl;
-        return;
-      }
-
-      if (!response.ok) {
-        throw new Error(`GitHub API returned ${response.status}`);
-      }
-
-      const releases = await response.json();
-
-      const matchedRelease = releases.find(release =>
-        release.tag_name && release.tag_name.startsWith(`${appPrefix}-`)
-      );
-
-      if (!matchedRelease || !matchedRelease.assets) {
-        console.warn(`No release found with prefix "${appPrefix}-". Using fallback URL.`);
-        btn.href = fallbackUrl;
-        return;
-      }
-
-      const apkAsset = matchedRelease.assets.find(asset =>
-        asset.name && asset.name.endsWith('.apk')
-      );
-
-      if (apkAsset && apkAsset.browser_download_url) {
-        btn.href = apkAsset.browser_download_url;
-      } else {
-        console.warn(`No .apk asset found in release "${matchedRelease.tag_name}". Using fallback URL.`);
-        btn.href = fallbackUrl;
-      }
-
-    } catch (error) {
-      console.error(`Failed to fetch release for ${appPrefix}:`, error);
-      btn.href = fallbackUrl;
-    }
-  }
-
-  fetchLatestAppRelease('auric', 'auric-download-link', 'auric-release.apk');
-  fetchLatestAppRelease('lumio', 'lumio-download-link', 'lumio-release.apk');
+  /* ── SECURE DOWNLOAD BUTTONS ── */
+  document.querySelectorAll('.download-btn[data-href]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const url = btn.getAttribute('data-href');
+      if (url) window.location.href = url;
+    });
+    btn.addEventListener('contextmenu', (e) => e.preventDefault());
+  });
 });
 
 /* ── SCROLL PROGRESS BAR ── */

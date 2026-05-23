@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Drazolmakes — Mobile Developer</title>
-  <meta name="description" content="Independent mobile app developer building mindfulness, wellness, and productivity apps. Download AURIC and LUMIO — crafted companions for focus, calm, and clarity." />
-  <meta name="keywords" content="Drazolmakes, AURIC, LUMIO, breathwork, mindfulness app, productivity, mobile developer, wellness" />
+  <meta name="description"
+    content="Independent mobile app developer building mindfulness, wellness, and productivity apps. Download AURIC and LUMIO — crafted companions for focus, calm, and clarity." />
+  <meta name="keywords"
+    content="Drazolmakes, AURIC, LUMIO, breathwork, mindfulness app, productivity, mobile developer, wellness" />
   <meta name="author" content="Drazolmakes" />
   <meta property="og:title" content="Drazolmakes — Mobile Developer" />
-  <meta property="og:description" content="Building apps people actually use. Download AURIC for science-backed breathwork." />
+  <meta property="og:description"
+    content="Building apps people actually use. Download AURIC for science-backed breathwork." />
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/png" href="icon.png" />
   <link rel="stylesheet" href="styles.css" />
   <script src="config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body>
   <div class="cursor-dot" id="cursor-dot"></div>
   <div class="cursor-glow" id="cursor-glow"></div>
@@ -41,18 +46,39 @@
     </nav>
 
     <section class="hero" id="hero">
-      <div class="hero-tag" id="dynamic-greeting">Welcome</div>
-      <h1>Building apps<br>people <span class="gradient-text">actually use.</span></h1>
-      <p class="hero-desc">I design and develop mobile applications focused on health, mindfulness, and everyday utility. Find the perfect app for your current state.</p>
-      <div class="breath-visualizer">
-        <div class="breath-ring"></div>
-        <div class="breath-ring"></div>
-        <div class="breath-ring"></div>
-        <div class="breath-core"></div>
+      <div class="hero-content">
+        <div class="hero-tag" id="dynamic-greeting">Welcome</div>
+        <h1>Building apps<br>people <span class="gradient-text">actually use.</span></h1>
+        <p class="hero-desc">I design and develop mobile applications focused on health, mindfulness, and everyday
+          utility. Find the perfect app for your current state.</p>
       </div>
-
+      <div class="hero-phone">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-slide phone-slide--auric">
+              <div class="phone-app-icon"></div>
+              <div class="phone-app-name">AURIC</div>
+              <div class="phone-app-tagline">breathe · focus · live</div>
+              <div class="phone-ui-bar"></div>
+              <div class="phone-ui-bar phone-ui-bar--short"></div>
+              <div class="phone-ui-bar phone-ui-bar--accent"></div>
+            </div>
+            <div class="phone-slide phone-slide--lumio">
+              <div class="phone-app-icon phone-app-icon--lumio"></div>
+              <div class="phone-app-name">LUMIO</div>
+              <div class="phone-app-tagline">light · utility · clarity</div>
+              <div class="phone-ui-bar"></div>
+              <div class="phone-ui-bar phone-ui-bar--short"></div>
+              <div class="phone-ui-bar phone-ui-bar--accent"></div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="scroll-indicator" id="scroll-indicator">
-        <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
         <span>SCROLL TO EXPLORE</span>
       </div>
     </section>
@@ -60,8 +86,16 @@
     <!-- Marquee Ticker -->
     <div class="marquee-section">
       <div class="marquee-track">
-        <span>BREATHWORK</span><span class="mq-dot">◆</span><span>MINDFULNESS</span><span class="mq-dot">◆</span><span>FOCUS</span><span class="mq-dot">◆</span><span>WELLNESS</span><span class="mq-dot">◆</span><span>RELAX</span><span class="mq-dot">◆</span><span>SMOOTH UI</span><span class="mq-dot">◆</span><span>LIFESTYLE</span><span class="mq-dot">◆</span><span>OFFLINE MODE</span><span class="mq-dot">◆</span>
-        <span>BREATHWORK</span><span class="mq-dot">◆</span><span>MINDFULNESS</span><span class="mq-dot">◆</span><span>FOCUS</span><span class="mq-dot">◆</span><span>WELLNESS</span><span class="mq-dot">◆</span><span>RELAX</span><span class="mq-dot">◆</span><span>SMOOTH UI</span><span class="mq-dot">◆</span><span>LIFESTYLE</span><span class="mq-dot">◆</span><span>OFFLINE MODE</span><span class="mq-dot">◆</span>
+        <span>BREATHWORK</span><span class="mq-dot">◆</span><span>MINDFULNESS</span><span
+          class="mq-dot">◆</span><span>FOCUS</span><span class="mq-dot">◆</span><span>WELLNESS</span><span
+          class="mq-dot">◆</span><span>RELAX</span><span class="mq-dot">◆</span><span>SMOOTH UI</span><span
+          class="mq-dot">◆</span><span>LIFESTYLE</span><span class="mq-dot">◆</span><span>OFFLINE MODE</span><span
+          class="mq-dot">◆</span>
+        <span>BREATHWORK</span><span class="mq-dot">◆</span><span>MINDFULNESS</span><span
+          class="mq-dot">◆</span><span>FOCUS</span><span class="mq-dot">◆</span><span>WELLNESS</span><span
+          class="mq-dot">◆</span><span>RELAX</span><span class="mq-dot">◆</span><span>SMOOTH UI</span><span
+          class="mq-dot">◆</span><span>LIFESTYLE</span><span class="mq-dot">◆</span><span>OFFLINE MODE</span><span
+          class="mq-dot">◆</span>
       </div>
     </div>
 
@@ -74,16 +108,48 @@
             <div class="app-icon"></div>
             <div class="app-info">
               <div class="app-name">AURIC <span class="app-status"><span class="status-dot"></span> LIVE</span></div>
-              <div class="app-desc">A minimalist approach to mindfulness. Reclaim your focus in a world of noise with clean, science-backed breathing cycles. Make it a lifestyle.</div>
+              <div class="app-desc">A minimalist approach to mindfulness. Reclaim your focus in a world of noise with
+                clean, science-backed breathing cycles. Make it a lifestyle.</div>
               <div class="feature-grid">
-                <div class="feature-item"><div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>15 Science-Backed Exercises</div>
-                <div class="feature-item"><div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Multi-User breathing session</div>
-                <div class="feature-item"><div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Global leaderboard</div>
-                <div class="feature-item"><div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Offline Mode Ready</div>
+                <div class="feature-item">
+                  <div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2.5">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg></div>15 Science-Backed Exercises
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2.5">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg></div>Multi-User breathing session
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2.5">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg></div>Global leaderboard
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2.5">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg></div>Offline Mode Ready
+                </div>
               </div>
-              <a id="auric-download-link" href="#" class="download-btn" data-magnetic>
+              <a id="auric-download-link" href="javascript:void(0)"
+                data-href="https://github.com/Drazolmakes/developer-home/releases/download/auric-v1.1.2/auric-release.apk"
+                class="download-btn" data-magnetic>
                 DOWNLOAD AURIC
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
               </a>
             </div>
           </div>
@@ -92,16 +158,48 @@
             <div class="app-icon app-icon--lumio"></div>
             <div class="app-info">
               <div class="app-name">LUMIO <span class="app-status"><span class="status-dot"></span> LIVE</span></div>
-              <div class="app-desc">Lumio is a clean, minimal flashlight app designed for people who want more than just a toggle. No ads, no bloat — just beautiful light at your fingertips.</div>
+              <div class="app-desc">Lumio is a clean, minimal flashlight app designed for people who want more than just
+                a toggle. No ads, no bloat — just beautiful light at your fingertips.</div>
               <div class="feature-grid">
-                <div class="feature-item"><div class="feature-icon feature-icon--lumio"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Torch with brightness control</div>
-                <div class="feature-item"><div class="feature-icon feature-icon--lumio"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Strobe with adjustable speed</div>
-                <div class="feature-item"><div class="feature-icon feature-icon--lumio"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>SOS emergency flash</div>
-                <div class="feature-item"><div class="feature-icon feature-icon--lumio"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>Morse code encoder</div>
+                <div class="feature-item">
+                  <div class="feature-icon feature-icon--lumio"><svg width="14" height="14" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg></div>Torch with brightness control
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon feature-icon--lumio"><svg width="14" height="14" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg></div>Strobe with adjustable speed
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon feature-icon--lumio"><svg width="14" height="14" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg></div>SOS emergency flash
+                </div>
+                <div class="feature-item">
+                  <div class="feature-icon feature-icon--lumio"><svg width="14" height="14" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg></div>Morse code encoder
+                </div>
               </div>
-              <a id="lumio-download-link" href="#" class="download-btn download-btn--lumio" data-magnetic>
+              <a id="lumio-download-link" href="javascript:void(0)"
+                data-href="https://github.com/Drazolmakes/developer-home/releases/download/lumio-v1.0.0/lumio-release.apk"
+                class="download-btn download-btn--lumio" data-magnetic>
                 DOWNLOAD LUMIO
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
               </a>
             </div>
           </div>
@@ -117,17 +215,18 @@
       <div class="leaderboard-wrapper">
         <div class="lb-header">
           <div class="lb-title">Top 5 Practitioners</div>
-          <div id="lb-badge" class="lb-live-badge"><div class="lb-live-dot"></div> LIVE SYNC</div>
+          <div id="lb-badge" class="lb-live-badge">
+            <div class="lb-live-dot"></div> LIVE SYNC
+          </div>
         </div>
         <div class="lb-tabs">
           <div class="lb-tab active" onclick="switchLeaderboardTab('auric', this)">AURIC</div>
         </div>
-        <div id="lb-rows-container"><div class="lb-loading">Connecting to servers...</div></div>
+        <div id="lb-rows-container">
+          <div class="lb-loading">Connecting to servers...</div>
+        </div>
       </div>
     </section>
-
-    <div class="divider reveal"></div>
-
     <footer class="main-footer reveal">
       <div class="footer-built">
         <span>BUILT IN INDIA</span>
@@ -141,7 +240,7 @@
       <div class="copyright">&copy; 2026 Drazolmakes. All rights reserved.</div>
     </footer>
   </div>
-
   <script src="script.js"></script>
 </body>
+
 </html>
