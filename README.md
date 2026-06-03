@@ -62,7 +62,7 @@ A flashlight app for people who want more than a toggle. No ads. No bloat. Just 
 ```
 Mobile Development     →   Flutter / Dart
 UI/UX Design           →   Figma
-Backend / Auth         →   Firebase
+Backend / Auth         →   Supabase
 Hosting                →   GitHub Pages
 Analytics              →   Custom leaderboard system
 ```
@@ -86,7 +86,7 @@ Every app I build follows three rules:
 | | |
 |---|---|
 | 🌐 Portfolio | [drazoldravus.github.io/developer-home](https://drazoldravus.github.io/developer-home/) |
-| 📧 Support | [drazolinc@gmail.com](mailto:drazolinc@gmail.com) |
+| 📧 Support | [dravus@zohomail.in](mailto:dravus@zohomail.in) |
 | 📋 Legal & Privacy | [View Policy](https://drazoldravus.github.io/developer-home/legal.html) |
 
 ---
