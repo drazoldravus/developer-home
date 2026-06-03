@@ -1,15 +1,15 @@
 <div align="center">
 
 ```
-██████╗ ██████╗  █████╗ ███████╗ ██████╗ ██╗     
-██╔══██╗██╔══██╗██╔══██╗╚════██║██╔═══██╗██║     
-██║  ██║██████╔╝███████║    ██╔╝██║   ██║██║     
-██║  ██║██╔══██╗██╔══██║   ██╔╝ ██║   ██║██║     
-██████╔╝██║  ██║██║  ██║   ██║  ╚██████╔╝███████╗
-╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚══════╝
+██████╗ ██████╗  █████╗ ██╗   ██╗██╗   ██╗███████╗
+██╔══██╗██╔══██╗██╔══██╗██║   ██║██║   ██║██╔════╝
+██║  ██║██████╔╝███████║██║   ██║██║   ██║███████╗
+██║  ██║██╔══██╗██╔══██║╚██╗ ██╔╝██║   ██║╚════██║
+██████╔╝██║  ██║██║  ██║ ╚████╔╝ ╚██████╔╝███████║
+╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝   ╚═════╝ ╚══════╝
 ```
 
-### **DRAZOLMAKES** — Mobile Developer · Built in India, with intention.
+### **dravus** — Mobile Development · Built in India, with intention.
 
 [![Apps Live](https://img.shields.io/badge/Apps-Live-00c97d?style=flat-square&labelColor=0d0d0d)](https://drazoldravus.github.io/developer-home/)
 [![AURIC](https://img.shields.io/badge/App-AURIC-d4a017?style=flat-square&labelColor=0d0d0d)](https://drazoldravus.github.io/developer-home/#apps)
@@ -24,7 +24,7 @@
 
 I design and ship **mobile apps** focused on health, mindfulness, and everyday utility — things people actually use, not things that collect dust on app stores.
 
-No bloat. No dark patterns. No ads.  
+No bloat. No ads.  
 Just clean software built with care.
 
 ---
@@ -93,7 +93,7 @@ Every app I build follows three rules:
 
 <div align="center">
 
-**© 2026 Drazolmakes. All rights reserved.**  
+**© 2026 dravus. All rights reserved.**  
 *Built in India · With Intention*
 
 </div>
