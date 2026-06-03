@@ -14,7 +14,7 @@
 [![Apps Live](https://img.shields.io/badge/Apps-Live-00c97d?style=flat-square&labelColor=0d0d0d)](https://drazoldravus.github.io/developer-home/)
 [![AURIC](https://img.shields.io/badge/App-AURIC-d4a017?style=flat-square&labelColor=0d0d0d)](https://drazoldravus.github.io/developer-home/#apps)
 [![LUMIO](https://img.shields.io/badge/App-LUMIO-4ea8de?style=flat-square&labelColor=0d0d0d)](https://drazoldravus.github.io/developer-home/#apps)
-[![Contact](https://img.shields.io/badge/Contact-drazolinc@gmail.com-555?style=flat-square&labelColor=0d0d0d)](mailto:dravus@zohomail.in)
+[![Contact](https://img.shields.io/badge/Contact-dravus@zohomail.in-555?style=flat-square&labelColor=0d0d0d)](mailto:dravus@zohomail.in)
 
 </div>
 
