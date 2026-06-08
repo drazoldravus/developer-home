@@ -4,20 +4,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DRAVUS — Mobile Development</title>
+  <title>DRAVUS — Mobile Development | Mindfulness & Wellness Apps</title>
   <meta name="description"
     content="Independent mobile app developer building mindfulness, wellness, and productivity apps. Download AURIC and LUMIO — crafted companions for focus, calm, and clarity." />
   <meta name="keywords"
-    content="DRAVUS, AURIC, LUMIO, breathwork, mindfulness app, productivity, mobile developer, wellness" />
+    content="DRAVUS, AURIC, LUMIO, breathwork, mindfulness app, productivity, mobile developer, wellness, meditation app, focus app, breathing exercises, stress relief, mental health" />
   <meta name="author" content="DRAVUS" />
-  <meta property="og:title" content="DRAVUS — Mobile Development" />
-  <meta property="og:description"
-    content="Building apps people actually use. Download AURIC for science-backed breathwork." />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="English" />
+  <link rel="canonical" href="https://drazoldravus.github.io/developer-home/" />
+
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://drazoldravus.github.io/developer-home/" />
+  <meta property="og:title" content="DRAVUS — Mobile Development | Mindfulness & Wellness Apps" />
+  <meta property="og:description"
+    content="Building apps people actually use. Download AURIC for science-backed breathwork and LUMIO for clean utility." />
+  <meta property="og:image" content="https://drazoldravus.github.io/developer-home/icon.png" />
+  <meta property="og:site_name" content="DRAVUS" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://drazoldravus.github.io/developer-home/" />
+  <meta name="twitter:title" content="DRAVUS — Mobile Development | Mindfulness & Wellness Apps" />
+  <meta name="twitter:description"
+    content="Building apps people actually use. Download AURIC for science-backed breathwork and LUMIO for clean utility." />
+  <meta name="twitter:image" content="https://drazoldravus.github.io/developer-home/icon.png" />
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="apple-touch-icon" href="icon.png" />
   <link rel="stylesheet" href="styles.css" />
   <script src="config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "DRAVUS",
+    "url": "https://drazoldravus.github.io/developer-home/",
+    "logo": "https://drazoldravus.github.io/developer-home/icon.png",
+    "description": "Independent mobile app developer building mindfulness, wellness, and productivity apps",
+    "foundingDate": "2026",
+    "founder": {
+      "@type": "Person",
+      "name": "DRAVUS"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "dravus@zohomail.in",
+      "contactType": "Customer Support"
+    },
+    "sameAs": [
+      "https://github.com/drazoldravus"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AURIC",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "12"
+    },
+    "description": "A minimalist approach to mindfulness. Reclaim your focus with clean, science-backed breathing cycles."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "LUMIO",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "A clean, minimal flashlight app with torch, strobe, SOS, and morse code features."
+  }
+  </script>
 </head>
 
 <body>
@@ -37,7 +116,10 @@
 
   <div class="page">
     <nav class="nav" id="navbar">
-      <div class="nav-logo">DRAVUS</div>
+      <div class="nav-logo">
+        <img src="icon.png" alt="DRAVUS Logo" class="nav-logo-icon" />
+        <span>DRAVUS</span>
+      </div>
       <div class="nav-links">
         <a href="#apps" class="nav-link" data-section="apps">Apps</a>
         <a href="#leaderboard" class="nav-link" data-section="leaderboard">Community</a>
@@ -105,7 +187,7 @@
         <div class="app-cards-grid">
           <!-- AURIC Card -->
           <div class="app-card" id="auric-card" data-tilt>
-            <div class="app-icon"></div>
+            <div class="app-icon app-icon--auric"></div>
             <div class="app-info">
               <div class="app-name">AURIC <span class="app-status"><span class="status-dot"></span> LIVE</span></div>
               <div class="app-desc">A minimalist approach to mindfulness. Reclaim your focus in a world of noise with
@@ -228,6 +310,10 @@
       </div>
     </section>
     <footer class="main-footer reveal">
+      <div class="footer-logo">
+        <img src="icon.png" alt="DRAVUS Logo" class="footer-logo-icon" />
+        <span>DRAVUS</span>
+      </div>
       <div class="footer-built">
         <span>BUILT IN INDIA</span>
         <span style="color:var(--primary)">·</span>
