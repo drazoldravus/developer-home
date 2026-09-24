@@ -199,36 +199,6 @@ Your phone, your data, no excuses.
 
 <div align="center">
 
-### ◇ &nbsp; Setup — Self-Hosting
-
-</div>
-
-<br>
-
-This site uses **Supabase** for the live leaderboard. To run your own instance:
-
-```
-1.  Clone the repo
-2.  Copy config.example.js → config.js
-3.  Replace the placeholder credentials with your Supabase keys
-4.  Never commit config.js to version control
-```
-
-```js
-const APP_CONFIG = Object.freeze({
-  SUPABASE_URL: 'https://your-project.supabase.co',
-  SUPABASE_ANON_KEY: 'your_anon_key_here',
-});
-```
-
-<br>
-
----
-
-<br>
-
-<div align="center">
-
 | | |
 |:---:|:---|
 | 🌐 | [**Portfolio**](https://drazoldravus.github.io/developer-home/) |
